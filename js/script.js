@@ -1,32 +1,21 @@
 "use strict";
 
-const numberOfFilms = +prompt("Сколько фильмов вы уже посмотрели?");
+let num = 50;
 
-const personalMovieDB = {
-  count: numberOfFilms,
-  movies: {},
-  actors: {},
-  genres: [],
-  privat: false,
-};
+// while (num <= 55) {
+//   console.log(num);
+//   num++;
+// }
 
-const lastFilm = prompt("Один из последних просмотренных фильмов?"),
-  rating = +prompt("Насколько оцените его?");
+// do {
+//   console.log(num);
+//   num++;
+// } while (num < 55);
 
-personalMovieDB.movies[lastFilm] = rating;
-
-console.log(personalMovieDB);
-
-"slfks".length < 10 ? console.log("Да") : console.log("Нет");
-
-switch ("sfjk;d".length) {
-  case 10:
-    console.log("Десять!");
-    break;
-  case 6:
-    console.log("Шесть!");
-    break;
-  default:
-    console.log("Иди нахуй, я не ебу");
-    break;
+for (let index = 1; index < 10; index++) {
+  if (index === 6) {
+    //  break;
+    continue;
+  }
+  console.log(index);
 }
