@@ -1,33 +1,70 @@
 "use strict";
 
-const str = "teSt";
-const arr = [1, 2, 3];
+let numberOfFilms;
 
-// console.log((str[2] = "d"));
+function start() {
+  numberOfFilms = +prompt("Сколько фильмов вы уже посмотрели?");
 
-console.log(str.toUpperCase());
+  while (numberOfFilms == "" || numberOfFilms == null || isNaN(numberOfFilms)) {
+    numberOfFilms = +prompt("Сколько фильмов вы уже посмотрели?");
+  }
+}
 
-console.log(str.toLowerCase());
+start();
 
-// console.log(str);
+const personalMovieDB = {
+  count: numberOfFilms,
+  movies: {},
+  actors: {},
+  genres: [],
+  privat: false,
+};
 
-const fruit = "some fruit";
+function showMyDB() {
+  if (!personalMovieDB.privat) {
+    console.log(personalMovieDB);
+  }
+}
 
-console.log(fruit.indexOf("fruit"));
+function rememberMyFilms() {
+  let i = 0;
+  while (i < 2) {
+    const lastFilm = prompt("Один из последних просмотренных фильмов?"),
+      rating = +prompt("Насколько оцените его?");
 
-const logg = "Hello world and Jack!";
+    if (lastFilm != null && rating != null && lastFilm != "" && rating != "" && lastFilm.length < 50) {
+      personalMovieDB.movies[lastFilm] = rating;
+    } else {
+      i--;
+    }
+    i++;
+  }
+}
 
-console.log(logg.slice(-5, -1));
+rememberMyFilms();
 
-console.log(logg.substring(1, 7));
+// showMyDB();
 
-console.log(logg.substr(1, 7));
+function writeYourGenres() {
+  for (let i = 0; i < 3; i++) {
+    personalMovieDB.genres[i] = prompt(`Ваш любимый жанр под номеро ${i + 1}`);
+  }
+}
 
-const num = 12.2;
+writeYourGenres();
 
-console.log(Math.round(num));
+showMyDB();
 
-const test = "12.2px";
+function typeOfViewers() {
+  if (personalMovieDB.count < 10 && personalMovieDB.count > -1) {
+    console.log("Просмотрено довольно мало фильмов!");
+  } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+    console.log("Вы классический зритель!");
+  } else if (personalMovieDB.count > 30) {
+    console.log("Вы киноман");
+  } else {
+    console.log("Произошла ошибка!");
+  }
+}
 
-console.log(parseInt(test));
-console.log(parseFloat(test));
+typeOfViewers();
