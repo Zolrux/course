@@ -16,3 +16,17 @@ const lastFilm = prompt("Один из последних просмотренн
 personalMovieDB.movies[lastFilm] = rating;
 
 console.log(personalMovieDB);
+
+"slfks".length < 10 ? console.log("Да") : console.log("Нет");
+
+switch ("sfjk;d".length) {
+  case 10:
+    console.log("Десять!");
+    break;
+  case 6:
+    console.log("Шесть!");
+    break;
+  default:
+    console.log("Иди нахуй, я не ебу");
+    break;
+}
