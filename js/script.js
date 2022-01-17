@@ -1,29 +1,80 @@
 "use strict";
 
-let str = "some";
-let strObj = new String(str);
+let numberOfFilms;
 
-// console.log(typeof str);
-// console.log(typeof strObj);
+const personalMovieDB = {
+  count: numberOfFilms,
+  movies: {},
+  actors: {},
+  genres: [],
+  privat: false,
+  start: function () {
+    personalMovieDB.numberOfFilms = +prompt("Сколько фильмов вы уже посмотрели?");
 
-// console.dir([1, 2, 3]);
+    while (personalMovieDB.numberOfFilms == "" || personalMovieDB.numberOfFilms == null || isNaN(personalMovieDB.numberOfFilms)) {
+      personalMovieDB.numberOfFilms = +prompt("Сколько фильмов вы уже посмотрели?");
+    }
+  },
+  rememberMyFilms: function () {
+    let i = 0;
 
-const soldier = {
-  health: 400,
-  armor: 100,
-  sayHello: function () {
-    console.log("hello");
+    while (i < 2) {
+      const lastFilm = prompt("Один из последних просмотренных фильмов?"),
+        rating = +prompt("Насколько оцените его?");
+
+      if (lastFilm != null && rating != null && lastFilm != "" && rating != "" && lastFilm.length < 50) {
+        personalMovieDB.movies[lastFilm] = rating;
+      } else {
+        i--;
+      }
+      i++;
+    }
+  },
+  writeYourGenres: function () {
+    for (let i = 0; i < 3; i++) {
+      personalMovieDB.genres[i] = prompt(`Ваш любимый жанр под номером ${i + 1}`);
+      if (personalMovieDB.genres[i] == null || personalMovieDB.genres[i] == "") {
+        i--;
+      }
+    }
+    personalMovieDB.genres.forEach((genre, index) => {
+      console.log(`Любимый жанр #${index + 1} - это ${genre}`);
+    });
+  },
+  showMyDB: function () {
+    if (!personalMovieDB.privat) {
+      console.log(personalMovieDB);
+    }
+  },
+  typeOfViewers: function () {
+    if (personalMovieDB.count < 10 && personalMovieDB.count > -1) {
+      console.log("Просмотрено довольно мало фильмов!");
+    } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
+      console.log("Вы классический зритель!");
+    } else if (personalMovieDB.count > 30) {
+      console.log("Вы киноман");
+    } else {
+      console.log("Произошла ошибка!");
+    }
+  },
+  toggleVisibleMyDB: function () {
+    if (!personalMovieDB.privat) {
+      personalMovieDB.privat = true;
+    } else {
+      personalMovieDB.privat = false;
+    }
   },
 };
 
-const john = Object.create(soldier);
+personalMovieDB.start();
+// personalMovieDB.rememberMyFilms();
 
-// const john = {
-//   health: 100,
-// };
+// personalMovieDB.showMyDB();
 
-// john.__proto__ = soldier; // Старый способ
+personalMovieDB.writeYourGenres();
 
-// Object.setPrototypeOf(john, soldier);
+personalMovieDB.showMyDB();
 
-console.log(john);
+// personalMovieDB.typeOfViewers();
+
+personalMovieDB.toggleVisibleMyDB();
