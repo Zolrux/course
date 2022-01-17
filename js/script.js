@@ -1,80 +1,39 @@
 "use strict";
 
-let numberOfFilms;
+// To string
 
-const personalMovieDB = {
-  count: numberOfFilms,
-  movies: {},
-  actors: {},
-  genres: [],
-  privat: false,
-  start: function () {
-    personalMovieDB.numberOfFilms = +prompt("Сколько фильмов вы уже посмотрели?");
+// console.log(typeof String(null));
+// console.log(typeof String(4));
 
-    while (personalMovieDB.numberOfFilms == "" || personalMovieDB.numberOfFilms == null || isNaN(personalMovieDB.numberOfFilms)) {
-      personalMovieDB.numberOfFilms = +prompt("Сколько фильмов вы уже посмотрели?");
-    }
-  },
-  rememberMyFilms: function () {
-    let i = 0;
+// console.log(typeof (5 + ""));
 
-    while (i < 2) {
-      const lastFilm = prompt("Один из последних просмотренных фильмов?"),
-        rating = +prompt("Насколько оцените его?");
+const num = 5;
 
-      if (lastFilm != null && rating != null && lastFilm != "" && rating != "" && lastFilm.length < 50) {
-        personalMovieDB.movies[lastFilm] = rating;
-      } else {
-        i--;
-      }
-      i++;
-    }
-  },
-  writeYourGenres: function () {
-    for (let i = 0; i < 3; i++) {
-      personalMovieDB.genres[i] = prompt(`Ваш любимый жанр под номером ${i + 1}`);
-      if (personalMovieDB.genres[i] == null || personalMovieDB.genres[i] == "") {
-        i--;
-      }
-    }
-    personalMovieDB.genres.forEach((genre, index) => {
-      console.log(`Любимый жанр #${index + 1} - это ${genre}`);
-    });
-  },
-  showMyDB: function () {
-    if (!personalMovieDB.privat) {
-      console.log(personalMovieDB);
-    }
-  },
-  typeOfViewers: function () {
-    if (personalMovieDB.count < 10 && personalMovieDB.count > -1) {
-      console.log("Просмотрено довольно мало фильмов!");
-    } else if (personalMovieDB.count >= 10 && personalMovieDB.count < 30) {
-      console.log("Вы классический зритель!");
-    } else if (personalMovieDB.count > 30) {
-      console.log("Вы киноман");
-    } else {
-      console.log("Произошла ошибка!");
-    }
-  },
-  toggleVisibleMyDB: function () {
-    if (!personalMovieDB.privat) {
-      personalMovieDB.privat = true;
-    } else {
-      personalMovieDB.privat = false;
-    }
-  },
-};
+// console.log("https://vk.com/catalog/" + num);
 
-personalMovieDB.start();
-// personalMovieDB.rememberMyFilms();
+const fontSize = 26 + "px";
 
-// personalMovieDB.showMyDB();
+// To number
 
-personalMovieDB.writeYourGenres();
+// console.log(typeof parseInt("15px", 10));
 
-personalMovieDB.showMyDB();
+// let answ = +prompt("Hello");
 
-// personalMovieDB.typeOfViewers();
+// To boolean
 
-personalMovieDB.toggleVisibleMyDB();
+// 0, "", null, undefined, NaN --------- FALSE!
+
+let switcher = null;
+
+if (switcher) {
+  //   console.log("Working...");
+}
+
+switcher = 1;
+
+if (switcher) {
+  //   console.log("Working...");
+}
+
+// console.log(typeof Boolean("3"));
+console.log(typeof !!"3");
