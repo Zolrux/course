@@ -1,39 +1,22 @@
 "use strict";
 
-// To string
+const box = document.getElementById("box");
 
-// console.log(typeof String(null));
-// console.log(typeof String(4));
+// console.log(box);
 
-// console.log(typeof (5 + ""));
+const btns = document.getElementsByTagName("button");
 
-const num = 5;
+// console.log(btns[0]);
 
-// console.log("https://vk.com/catalog/" + num);
+const circles = document.getElementsByClassName("circle");
 
-const fontSize = 26 + "px";
+// console.log(circles);
 
-// To number
+const hearts = document.querySelectorAll(".heart");
 
-// console.log(typeof parseInt("15px", 10));
+hearts.forEach((item) => {
+  console.log(item);
+});
 
-// let answ = +prompt("Hello");
-
-// To boolean
-
-// 0, "", null, undefined, NaN --------- FALSE!
-
-let switcher = null;
-
-if (switcher) {
-  //   console.log("Working...");
-}
-
-switcher = 1;
-
-if (switcher) {
-  //   console.log("Working...");
-}
-
-// console.log(typeof Boolean("3"));
-console.log(typeof !!"3");
+const oneHeart = document.querySelector("div");
+console.log(oneHeart);
