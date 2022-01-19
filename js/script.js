@@ -1,49 +1,43 @@
 "use strict";
 
-const box = document.getElementById("box");
-const btns = document.getElementsByTagName("button");
-const circles = document.getElementsByClassName("circle");
-const wrapper = document.querySelector(".wrapper");
-const hearts = wrapper.querySelectorAll(".heart");
-const oneHeart = wrapper.querySelector(".heart");
+const btns = document.querySelectorAll("button"),
+  overlay = document.querySelector(".overlay");
 
-// box.style.backgroundColor = "blue";
-// box.style.width = "500px";
+// btn.onclick = function () {
+//   alert("click");
+// };
 
-box.style.cssText = `background-color: blue; width: 500px;`;
+// btn.onclick = function () {
+//   alert("second click");
+// };
 
-btns[1].style.borderRadius = "100%";
-circles[0].style.backgroundColor = "red";
+// btn.addEventListener("click", () => {
+//   alert("click");
+// });
 
-// for (let i = 0; i < hearts.length; i++) {
-//   hearts[i].style.backgroundColor = "blue";
-// }
+// let i = 0;
 
-hearts.forEach((item) => {
-  item.style.backgroundColor = "blue";
+const deleteElement = (e) => {
+  console.log(e.currentTarget);
+  //   console.log(e.target);
+  //   console.log(e.type);
+  //   i++;
+  //   if (i == 1) {
+  //     btn.removeEventListener("click", deleteElement);
+  //   }
+};
+
+btn.addEventListener("click", deleteElement);
+overlay.addEventListener("click", deleteElement);
+
+// btns.forEach((btn) => {
+//   btn.addEventListener("click", deleteElement, { once: true });
+// });
+
+const link = document.querySelector("a");
+
+link.addEventListener("click", (event) => {
+  event.preventDefault();
+
+  console.log(event.target);
 });
-
-const div = document.createElement("div");
-// const text = document.createTextNode("Тут был я");
-
-div.classList.add("black");
-
-wrapper.append(div);
-// wrapper.appendChild(div);
-
-// wrapper.prepend(div);
-
-// hearts[0].before(div);
-// hearts[0].after(div);
-
-// wrapper.insertBefore(div, hearts[1]);
-
-// circles[0].remove();
-// wrapper.removeChild();
-
-// hearts[0].replaceWith(circles[0]);
-
-div.innerHTML = "<h1>Hello world</h1>";
-// div.textContent = "<h1>Hello</h1>";
-
-div.insertAdjacentHTML("afterend", "<h2>Hello</h2>");
