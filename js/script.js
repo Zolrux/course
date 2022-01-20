@@ -1,43 +1,24 @@
 "use strict";
 
-const btns = document.querySelectorAll("button"),
-  overlay = document.querySelector(".overlay");
+// console.log(document.head);
+// console.log(document.documentElement);
+// console.log(document.body.children);
+// console.log(document.body.firstChild);
+// console.log(document.body.firstElementChild);
+// console.log(document.body.lastChild);
+// console.log(document.body.lastElementChild);
 
-// btn.onclick = function () {
-//   alert("click");
-// };
+// console.log(document.querySelector("#current").parentNode);
+// console.log(document.querySelector("#current").parentElement);
 
-// btn.onclick = function () {
-//   alert("second click");
-// };
+// console.log(document.querySelector("[data-current='3']").previousSibling);
+// console.log(document.querySelector(".wrapper").nextSibling);
+// console.log(document.querySelector("[data-current='3']").nextElementSibling);
 
-// btn.addEventListener("click", () => {
-//   alert("click");
-// });
-
-// let i = 0;
-
-const deleteElement = (e) => {
-  console.log(e.currentTarget);
-  //   console.log(e.target);
-  //   console.log(e.type);
-  //   i++;
-  //   if (i == 1) {
-  //     btn.removeEventListener("click", deleteElement);
-  //   }
-};
-
-btn.addEventListener("click", deleteElement);
-overlay.addEventListener("click", deleteElement);
-
-// btns.forEach((btn) => {
-//   btn.addEventListener("click", deleteElement, { once: true });
-// });
-
-const link = document.querySelector("a");
-
-link.addEventListener("click", (event) => {
-  event.preventDefault();
-
-  console.log(event.target);
-});
+// for (let node of document.body.childNodes) {
+//   if (node.nodeName === "#text" || node.nodeName === "#comment") {
+//     continue;
+//   } else {
+//     console.log(node);
+//   }
+// }
