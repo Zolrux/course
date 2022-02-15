@@ -1,37 +1,31 @@
 "use strict";
 
-const btn = document.querySelector(".btn");
-// let timerId,
-//   i = 0;
+const now = new Date("2021-05-01");
+// new Date.parse("2021-05-01");
 
-function myAnimation() {
-  const elem = document.querySelector(".box");
-  let pos = 0;
+// console.log(now.getFullYear());
+// console.log(now.getDay());
+// console.log(now.getDate());
+// console.log(now.getHours());
+// console.log(now.getMinutes());
+// console.log(now.getSeconds());
+// console.log(now.getMilliseconds());
 
-  const id = setInterval(frame, 10);
+// console.log(now.getUTCHours());
+// console.log(now.getUTCFullYear());
+// console.log(now.getUTCMinutes());
+// console.log(now.getUTCMonth());
+// console.log(now.getUTCSeconds());
+// console.log(now.getUTCMilliseconds());
 
-  function frame() {
-    if (pos === 300) {
-      clearInterval(id);
-    } else {
-      pos++;
-      elem.style.top = pos + "px";
-      elem.style.left = pos + "px";
-    }
-  }
+// console.log(now.getTimezoneOffset());
+// console.log(now.getTime());
+
+let start = new Date();
+
+for (let index = 0; index < 100000; index++) {
+  let some = index ** 3;
 }
 
-btn.addEventListener("click", myAnimation);
-
-// function logger() {
-//   if (i === 3) {
-//     clearInterval(timerId);
-//   }
-//   console.log("text");
-//   i++;
-// }
-
-// let id = setTimeout(function log() {
-//   console.log("Hello");
-//   id = setTimeout(log, 500);
-// }, 500);
+let end = new Date();
+alert(`Цикл отроботал за ${end - start} милисекунд`);
