@@ -1,31 +1,24 @@
 "use strict";
 
-const now = new Date("2021-05-01");
-// new Date.parse("2021-05-01");
+const box = document.querySelector(".text"),
+  btn = document.querySelector("button");
 
-// console.log(now.getFullYear());
-// console.log(now.getDay());
-// console.log(now.getDate());
-// console.log(now.getHours());
-// console.log(now.getMinutes());
-// console.log(now.getSeconds());
-// console.log(now.getMilliseconds());
+// const width = box.clientWidth;
+// const height = box.clientHeight;
+// const width = box.offsetWidth;
+// const height = box.offsetHeight;
+const width = box.scrollWidth;
+const height = box.scrollHeight;
 
-// console.log(now.getUTCHours());
-// console.log(now.getUTCFullYear());
-// console.log(now.getUTCMinutes());
-// console.log(now.getUTCMonth());
-// console.log(now.getUTCSeconds());
-// console.log(now.getUTCMilliseconds());
+console.log(width, height);
 
-// console.log(now.getTimezoneOffset());
-// console.log(now.getTime());
+btn.addEventListener("click", () => {
+  box.style.height = box.scrollHeight + "px";
+  console.log(box.scrollTop);
+});
 
-let start = new Date();
+console.log(box.getBoundingClientRect().top);
 
-for (let index = 0; index < 100000; index++) {
-  let some = index ** 3;
-}
+const style = window.getComputedStyle(box);
 
-let end = new Date();
-alert(`Цикл отроботал за ${end - start} милисекунд`);
+console.log(style.display);
