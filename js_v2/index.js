@@ -1,27 +1,30 @@
-const lines = 6;
-let result = '';
-let counter = 1;
-
-for (let i = 0; i < lines; i++) {
-	for (let j = 0; j < lines - i - 1; j++) {
-		result += ' ';
+function fib(countNumbers) {
+	if (typeof countNumbers !== 'number' || countNumbers === 0 || !Number.isInteger(countNumbers)) {
+		return '';
 	}
-	if (counter < lines * 2) {
-		for (let k = 0; k < counter; k++) {
-			result += '*';
-		}
-		if (!(counter === lines * 2 - 1)) {
-			result += '\n';
-		}
-		counter += 2;
+	let str = '';
+	let currentNumber = 0,
+		prevNumber = 1;
+	
+	if (countNumbers === 1) {
+		return '0';
 	}
+	for (let i = 0; i < countNumbers; i++) {
+		if (i === 0) {
+			str += '0 ';
+			continue;
+		}
+		let temp = currentNumber;
+		currentNumber += prevNumber;
+		prevNumber = temp;
+		if (i !== countNumbers - 1) {
+			str += `${currentNumber} `;
+		} else {
+			str += currentNumber;
+		}
+	}
+	return str;
 }
 
-//      *
-//     ***
-// 	*****
-//   *******
-//  *********
-// ***********
-
+const result = fib(10);
 console.log(result);
