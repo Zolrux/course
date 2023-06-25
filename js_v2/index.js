@@ -1,30 +1,20 @@
-function fib(countNumbers) {
-	if (typeof countNumbers !== 'number' || countNumbers === 0 || !Number.isInteger(countNumbers)) {
-		return '';
+const lines = 6;
+let result = '';
+let counter = 1;
+// Проверяется именно переменная result, формируйте строку в ней
+for (let i = 0; i < lines; i++) {
+	for (let j = 0; j < lines - i - 1; j++) {
+		result += ' ';
 	}
-	let str = '';
-	let currentNumber = 0,
-		prevNumber = 1;
-	
-	if (countNumbers === 1) {
-		return '0';
-	}
-	for (let i = 0; i < countNumbers; i++) {
-		if (i === 0) {
-			str += '0 ';
-			continue;
+	if (counter < lines * 2) {
+		for (let k = 0; k < counter; k++) {
+			result += '*';
 		}
-		let temp = currentNumber;
-		currentNumber += prevNumber;
-		prevNumber = temp;
-		if (i !== countNumbers - 1) {
-			str += `${currentNumber} `;
-		} else {
-			str += currentNumber;
+		if (counter !== lines * 2 - 1) {
+			result += '\n';
 		}
+		counter += 2;
 	}
-	return str;
 }
 
-const result = fib(10);
 console.log(result);
