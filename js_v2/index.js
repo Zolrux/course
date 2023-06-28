@@ -1,43 +1,34 @@
 'use strict';
 
-const shoppingMallData = {
-	shops: [
-		{
-			width: 10,
-			length: 5,
-		},
-		{
-			width: 15,
-			length: 7,
-		},
-		{
-			width: 20,
-			length: 5,
-		},
-		{
-			width: 8,
-			length: 10,
-		},
-	],
-	height: 5,
-	moneyPer1m3: 30,
-	budget: 50000,
-};
+const students = ['Peter', 'Andrew', 'Ann', 'Mark', 'Josh', 'Sandra', 'Cris', 'Bernard', 'Takesi', 'Sam'];
 
-function isBudgetEnough(data) {
-	const { shops, height, moneyPer1m3, budget } = data;
-	let totalSquare = 0;
-	shops.forEach((obj) => {
-		const { width, length } = obj;
-		totalSquare += length * width;
-	});
-	const totalVolume = totalSquare * height;
-	if (budget - totalVolume * moneyPer1m3 >= 0) {
-		return 'Бюджета достаточно';
-	} else {
-		return 'Бюджета недостаточно';
+function sortStudentsByGroups(arr) {
+	const groups = [];
+	let endIndex = 0;
+	let countTeams = parseInt(arr.length / 3);
+	let studentsWithoutGroup = 'Оставшиеся студенты: ';
+
+	arr.sort();
+
+	// Формируем группу из 3-х человек
+	for (let i = 0; i < countTeams; i++) {
+		const group = arr.slice(endIndex, endIndex + 3);
+		groups.push(group);
+		endIndex += 3;
 	}
+
+	// Добавляем информацию про оставшихся студентов (если такие имеются)
+	if (endIndex < arr.length) {
+		const remainingStudents = arr.slice(endIndex).join(', ');
+		studentsWithoutGroup += remainingStudents;
+		groups.push(studentsWithoutGroup);
+	} else {
+		studentsWithoutGroup += '-';
+		groups.push(studentsWithoutGroup);
+	}
+
+	return groups;
 }
 
-const result = isBudgetEnough(shoppingMallData);
+const result = sortStudentsByGroups(students);
 console.log(result);
