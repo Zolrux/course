@@ -1,20 +1,43 @@
-const lines = 6;
-let result = '';
-let counter = 1;
-// Проверяется именно переменная result, формируйте строку в ней
-for (let i = 0; i < lines; i++) {
-	for (let j = 0; j < lines - i - 1; j++) {
-		result += ' ';
-	}
-	if (counter < lines * 2) {
-		for (let k = 0; k < counter; k++) {
-			result += '*';
-		}
-		if (counter !== lines * 2 - 1) {
-			result += '\n';
-		}
-		counter += 2;
+'use strict';
+
+const shoppingMallData = {
+	shops: [
+		{
+			width: 10,
+			length: 5,
+		},
+		{
+			width: 15,
+			length: 7,
+		},
+		{
+			width: 20,
+			length: 5,
+		},
+		{
+			width: 8,
+			length: 10,
+		},
+	],
+	height: 5,
+	moneyPer1m3: 30,
+	budget: 50000,
+};
+
+function isBudgetEnough(data) {
+	const { shops, height, moneyPer1m3, budget } = data;
+	let totalSquare = 0;
+	shops.forEach((obj) => {
+		const { width, length } = obj;
+		totalSquare += length * width;
+	});
+	const totalVolume = totalSquare * height;
+	if (budget - totalVolume * moneyPer1m3 >= 0) {
+		return 'Бюджета достаточно';
+	} else {
+		return 'Бюджета недостаточно';
 	}
 }
 
+const result = isBudgetEnough(shoppingMallData);
 console.log(result);
