@@ -1,70 +1,49 @@
 'use strict';
 
-// filter
+const films = [
+	{
+		name: 'Titanic',
+		rating: 9,
+	},
+	{
+		name: 'Die hard 5',
+		rating: 5,
+	},
+	{
+		name: 'Matrix',
+		rating: 8,
+	},
+	{
+		name: 'Some bad film',
+		rating: 4,
+	},
+];
 
-// const names = ['Ivan', 'Ann', 'Ksenia', 'Voldemart'];
+function showGoodFilms(arr) {
+	return arr.filter(({rating}) => rating >= 8);
+}
 
-// const shortNames = names.filter(function(name) {
-// 	return name.length < 5;
-// });
+// console.log(showGoodFilms(films));
 
-// console.log(shortNames);
+function showListOfFilms(arr) {
+	return arr.reduce((prevValue, obj, index) => {
+		prevValue += index < arr.length - 1  ? `${obj.name}, ` : `${obj.name}`;
+		return prevValue;
+	}, '');
+}
 
-// map
+// console.log(showListOfFilms(films));
 
-// let answers = ['IvAn', 'AnnA', 'Hello'];
+function setFilmsIds(arr) {
+	return arr.map((film, index) => Object.assign(film, {id: index}));
+}
 
-// answers = answers.map(item => item.toLowerCase());
+// console.log(setFilmsIds(films));
 
-// console.log(answers);
+const tranformedArray = setFilmsIds(films);
 
-// every/some // Возвращают true / false
+function checkFilms(arr) {
+	return arr.every(obj => 'id' in obj);
+}
 
-// const some = [4, 5, 7];
-
-// console.log(some.some(item => typeof item === 'number'));
-// console.log(some.some(Number));
-
-// console.log(some.every(item => typeof item === 'number'));
-
-// reduce
-
-// const arr = [4, 5, 1, 3, 2, 6];
-
-// const result = arr.reduce((sum, current) => sum + current, 3);
-
-// console.log(result);
-
-// const arr = ['apple', 'pear', 'plum'];
-
-// const result = arr.reduce((sum, current) => `${sum}, ${current}`);
-
-// console.log(result);
-
-const obj = {
-	ivan: 'person',
-	ann: 'person',
-	dog: 'animal',
-	cat: 'animal'
-};
-
-const newArr = Object.entries(obj)
-	.filter(item => item[1] === 'person')
-	.map(item => item[0]);
-
-console.log(newArr);
-
-// Метод fromEntries преобразовывает обратно в объект!!!
-
-let prices = {
-	banana: 1,
-	orange: 2,
-	meat: 4,
-};
- 
-let doublePrices = Object.fromEntries(
-	// преобразовать в массив, затем map, затем fromEntries обратно объект
-	Object.entries(prices).map(([key, value]) => [key, value * 2])
-);
- 
-console.log(doublePrices); // 8
+// console.log(checkFilms(tranformedArray));
