@@ -1,63 +1,43 @@
 'use strict';
 
-const delay = ms => {
-	return new Promise(r => setTimeout(() => r(), ms));
-};
+// localStorage.setItem('number', 5);
+// localStorage.getItem('number');
 
-// delay(2000).then(() => console.log('2 seconds'));
+// localStorage.removeItem('number');
+// localStorage.clear();
 
-const url = 'https://jsonplaceholder.typicode.com/todos';
+// console.log(localStorage.getItem('number'));
 
-// function fetchTodos() {
-// 	console.log('Fetch todo started...');
-// 	return delay(2000)
-// 		.then(() => fetch(url))
-// 		.then(response => response.json());
-// }
+// Cookies
 
-// fetchTodos()
-// 	.then(data => {
-// 		console.log(data);
-// 	})
-// 	.catch(error => console.error(error));
+// document.cookie = 'name=Kostya';
+// document.cookie = 'surname=Kirov';
 
-function sum(a) {
-	const now = Date.parse(new Date());
-	for (let i = 0; i < 1_000_000_000; i++) {
-		a += i;
+// document.cookie = 'fullname=' + encodeURIComponent('Kostya Kirov') + '; max-age=10;';
+// ИЛИ
+// const date = new Date(Date.now() + 1000 * 10).toUTCString();
+// document.cookie = 'name=Kostya; expires=' + date;
+
+// document.cookie = 'setHttp=true; httpOnly';
+
+// document.cookie = 'name=Kostya; secure';
+
+// Practice
+
+const form = document.forms[0];
+const textarea = form[0];
+const button = form[1];
+
+if (localStorage.getItem('textareaValue')) {
+	textarea.value = localStorage.getItem('textareaValue');
+}
+
+textarea.addEventListener('input', function (e) {
+	localStorage.setItem('textareaValue', textarea.value);
+});
+
+button.addEventListener('click', function (e) {
+	if (localStorage.getItem('textareaValue')) {
+		localStorage.removeItem('textareaValue');
 	}
-	const endTime = Date.parse(new Date());
-	const resSeconds =  (endTime - now) / 1000;
-	console.log('Fn time result: ',resSeconds);
-	return a;
-}
-
-async function fetchAsyncTodos() {
-	console.log('Fetch todo started...');
-	try {
-		await delay(2000);
-		const getSum = await sum(5);
-		const response = await fetch(url);
-		if (response.ok) {
-			const data = await response.json();
-			console.log('Data:', data);
-			console.log('sum: ', getSum);
-		}
-	} catch (e) {
-		console.error(e);
-	} finally {
-		console.log('Fetch todo finally ended!');
-	}
-}
-
-fetchAsyncTodos();
-
-function sum2(a, b) {
-	return a + b;
-}
-
-async function calculate() {
-	return await sum2(5, 6);
-}
-
-console.log(calculate());
+});
