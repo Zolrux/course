@@ -1,35 +1,70 @@
 'use strict';
 
-// const person = {
-// 	name: 'Alex',
-// 	age: 25,
+// function User(name, age) {
+// 	this.name = name;
+// 	let userAge = age;
+	
+// 	this.say = function() {
+// 		console.log(`Имя пользователя: ${this.name}, возраст ${userAge}`);
+// 	};
 
-// 	get userAge() {
-// 		return this.age;
-// 	},
+// 	this.getAge = function() {
+// 		return userAge;
+// 	};
 
-// 	set userAge(num) {
-// 		this.age = num;
-// 	}
-// };
+// 	this.setAge = function(age) {
+// 		if (typeof age === 'number' && age > 0 && age < 110) {
+// 			userAge = age;
+// 		} else {
+// 			console.log('Недопустимое значение!');
+// 		}
+// 	};
+// }
 
-// console.log(person.userAge = 30);
+class User {
+	constructor(name, age) {
+		this.name = name;
+		this._age = age;
+	}
 
-let user = {
-	get name() {
-		return this._name;
-	},
+	#surname = 'Kirov';
 
-	set name(value) {
-		if (value.length < 4) {
-			console.log('Имя слишком короткое, должно быть более 4 символов');
-			return;
+	say = () => {
+		console.log(`Имя пользователя: ${this.name} ${this.#surname}, возраст ${this._age}`);
+	};
+	
+	get age() {
+		return this._age;
+	}
+
+	set age(age) {
+		if (typeof age === 'number' && age > 0 && age < 110) {
+			this._age = age;
+		} else {
+			console.log('Недопустимое значение!');
 		}
-		this._name = value;
-	},
-};
+	}
+	
+	get surname() {
+		return `Текущая фамилия: ${this.#surname}`;
+	}
 
-console.log(user.name); // Pete
-user.name = 'Pete';
+	set surname(str) {
+		if (str.length > 5) {
+			this.#surname = str;
+		} else {
+			console.log('Недопустимое значение фамилии!');
+		}
+	}
+}
 
-user.name = ''; // Имя слишком короткое...
+const ivan = new User('Kostya', 20);
+// console.log(ivan._age);
+// ivan._age = 99;
+// console.log(ivan._age);
+console.log(ivan.surname);
+// ivan.surname = 'Lukianjanenko';
+// console.log(ivan.surname);
+// ivan.surname = 'Lol';
+// console.log(ivan.surname);
+ivan.say();
