@@ -1,70 +1,41 @@
 'use strict';
 
-// function User(name, age) {
-// 	this.name = name;
-// 	let userAge = age;
-	
-// 	this.say = function() {
-// 		console.log(`Имя пользователя: ${this.name}, возраст ${userAge}`);
-// 	};
+// (Глобальное загрязнение)
+// const app = '123'; // Ошибка, так как в lib.js есть такая переменная
 
-// 	this.getAge = function() {
-// 		return userAge;
-// 	};
+const number = 1;
 
-// 	this.setAge = function(age) {
-// 		if (typeof age === 'number' && age > 0 && age < 110) {
-// 			userAge = age;
-// 		} else {
-// 			console.log('Недопустимое значение!');
-// 		}
-// 	};
-// }
+(function() {
+	let number = 2;
+	console.log(number);
+	console.log(number + 3);
+}());
 
-class User {
-	constructor(name, age) {
-		this.name = name;
-		this._age = age;
-	}
+console.log(number);
 
-	#surname = 'Kirov';
+const user = (function() {
+	const privat = function() {
+		console.log('I am private function');
+	};
 
-	say = () => {
-		console.log(`Имя пользователя: ${this.name} ${this.#surname}, возраст ${this._age}`);
+	const sum = (a, b) => a + b;
+
+	const getSumInfo = (a, b) => {
+		console.log(`Сумма чисел ${a} и ${b} = ${sum(a, b)}`);
+		return this;
+	};
+
+	return {
+		sayHello: privat,
+		getSumInfo,
+		get sumTest() {
+			console.log('Пример использование суммы чисел 5 и 10');
+			return sum(5, 10);
+		}
 	};
 	
-	get age() {
-		return this._age;
-	}
+}());
 
-	set age(age) {
-		if (typeof age === 'number' && age > 0 && age < 110) {
-			this._age = age;
-		} else {
-			console.log('Недопустимое значение!');
-		}
-	}
-	
-	get surname() {
-		return `Текущая фамилия: ${this.#surname}`;
-	}
-
-	set surname(str) {
-		if (str.length > 5) {
-			this.#surname = str;
-		} else {
-			console.log('Недопустимое значение фамилии!');
-		}
-	}
-}
-
-const ivan = new User('Kostya', 20);
-// console.log(ivan._age);
-// ivan._age = 99;
-// console.log(ivan._age);
-console.log(ivan.surname);
-// ivan.surname = 'Lukianjanenko';
-// console.log(ivan.surname);
-// ivan.surname = 'Lol';
-// console.log(ivan.surname);
-ivan.say();
+user.sayHello();
+console.log(user.sumTest);
+user.getSumInfo(5, 10);
