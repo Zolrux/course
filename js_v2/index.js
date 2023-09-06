@@ -1,15 +1,34 @@
 'use strict';
 
-try {
-	console.log('Normal');
-	console.log(a);
-	console.log('result');
-} catch(error) {
-	console.log(error.name);
-	console.log(error.message);
-	console.log(error.stack);
-} finally {
-	console.log('finally!');
-}
+const data = [
+	{
+		id: 'box',
+		tag: 'div'
+	}, 
+	{
+		id: 'fsfs',
+		tag: 'nav'
+	},
+	{
+		id: 'circle',
+		tag: ''
+	}
+];
 
-console.log('Still normal');
+try {
+	data.forEach((blockObj, i) => {
+		const block = document.createElement(blockObj.tag);
+
+		if (!blockObj.id) throw new SyntaxError(`В данных под номером ${i + 1} нет id`);
+
+		block.setAttribute('id', blockObj.id);
+		document.body.append(block);
+	});
+} catch(e) {
+	if (e.name === 'SyntaxError') {
+		console.log(e.message);
+	} else throw e;
+	
+	// console.error(e.name);
+	// console.log(e.stack);
+}
