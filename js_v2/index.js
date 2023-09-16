@@ -1,30 +1,16 @@
 'use strict';
 
-// function* generator() {
-// 	yield 'S';
-// 	yield 'c';
-// 	yield 'r';
-// 	yield 'i';
-// 	yield 'p';
-// 	yield 't';
-// }
+const btnTop = document.querySelector('.top');
+let coeff = 0.01;
 
-// const str = generator();
+btnTop.addEventListener('click', scrollTopAnimate);
 
-// console.log(str.next().value);
-
-function* count(n) {
-	for (let i = 0; i < n; i++) {
-		yield i;
+function scrollTopAnimate() {
+	if (scrollY > 0) {
+		console.log(coeff);
+		const scrollValue = parseInt(scrollY * coeff) + 1;
+		window.scrollBy(0, -scrollValue);
+		coeff -= 0.00001;
+		requestAnimationFrame(scrollTopAnimate);
 	}
 }
-
-for (const k of count(7)) {
-	console.log(k);
-}
-
-// const counter = count(7);
-
-// console.log(counter.next());
-// console.log(counter.next());
-// console.log(counter.next());
