@@ -1,80 +1,65 @@
 'use strict';
 
-const multiply20 = (price) => price * 20;
-const divide100 = (price) => price / 100;
-const normalizePrice = (price) => price.toFixed(2);
+// Пример №1
 
-const compose = (...functions) => {
-	return result => {
-		// let flag = true;
-		return functions.reduceRight((acc, currentFn) => {
-			// if (flag) {
-			// 	flag = false;
-			// 	return currentFn(acc(result));
-			// }
-			return currentFn(acc);
-		}, result);
-	};
-};
+// console.log(1);
 
-// Спсобо №2 (не оптимальный)
+// setTimeout(() => {
+// 	setTimeout(() => {
+// 		console.log(2);
+// 	}, 0);
+// 	console.log(3);
+// }, 0);
 
-// const compose = (...functions) => {
-// 	return result => {
-// 		let flag = true;
-// 		let functionResult;
+// console.log(4);
 
-// 		[...functions].reverse().forEach(value => {
-// 			if (flag) {
-// 				flag = false;
-// 				functionResult = value(result);
-// 			} else {
-// 				functionResult = value(functionResult);
-// 			}
-// 		});
+// Порядок выполененя: 1, 4, 3, 2
 
-// 		return functionResult;
-// 	};
-// };
+//========================================================================================================================================================
 
-// const res = compose(normalizePrice, divide100, multiply20)(200);
-// console.log(res);
+// Пример №2
 
-const add1 = function(a){return a + 1;};
-const addAll3 = function(a,b,c){return a + b + c;};
+// const promise = new Promise((resolve) => {
+// 	console.log(1); // синхронная операция, выполнится сразу как только дойдет код
+// 	resolve(2); // асинхронная операция!!!
+// });
 
-const composeWithArgs = (...functions) => {
-	return (...args) => {
-		// let flag = true;
-		return functions.reduceRight((acc, currentFn) => {
-			// if (flag) {
-			// 	flag = false;
-			// 	return currentFn(acc(...args)); 
-			// } 
-			// return currentFn(acc);
-			return currentFn(acc(...args)); 
-		});
-	};
-};
+// console.log(3);
 
-// Способ №2 (не оптимальный)
+// promise.then(res => console.log(res));
 
-// const composeWithArgs = (...functions) => {
-// 	return (...args) => {
-// 		let flag = true;
-// 		let functionResult;
+// console.log(4);
 
-// 		[...functions].reverse().forEach((value) => {
-// 			if (flag) {
-// 				flag = false;
-// 				functionResult = value(...args);
-// 			} else {
-// 				functionResult = value(functionResult);
-// 			}
-// 		});
-// 		return functionResult;
-// 	};
-// };
+// Порядок выполененя: 1, 3, 4, 2
 
-// const res = composeWithArgs(add1,addAll3)(1,2,3); // => Вернет 7
-// console.log(res);
+// ВАЖНО ПОМНИТЬ!!!
+// В Promise как конструктор в функции executor
+// все операции кроме асинхронных + resolve и reject
+// РАБОТАЮТ КАК СИНХРОННЫЕ И ВЫПОЛНЯТСЯ БУДУТ ПОСЛЕДОВАТЕЛЬНО (КАК ОБЫЧНЫЕ СИНХРОННЫЕ ОПЕРАЦИИ)
+
+//========================================================================================================================================================
+
+// Пример №3
+
+// setTimeout(() => {
+// 	console.log(1);
+// }, 0);
+
+// console.log(2);
+
+// Promise.resolve(3).then(res => console.log(res));
+
+// console.log(4);
+
+
+// Порядок выполененя: 2, 4, 3, 1
+
+// ВАЖНО ПОМНИТЬ!!!
+// Promise относиться к MicroTask Queue
+// setTimeout относиться к MacroTask Queue
+// СПЕРВА ВЫПОЛНЯЮТСЯ ВСЕ MicroTask
+// И ТОЛЬКО ПОТОМ начинают выполнятся поочередно MacroTask
+
+// P.S Если код из MacroTask создает код MicroTask, то
+// код MicroTask выполниться первым и только потом
+// остальные MacroTask продолжат выполняться по очереди
